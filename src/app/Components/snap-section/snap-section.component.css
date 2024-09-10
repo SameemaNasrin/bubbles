@@ -1,0 +1,47 @@
+/* src/app/snap-scroll/snap-scroll.component.css */
+.scroll-container {
+  height: 100vh;
+  /* scroll-snap-type: y mandatory; */
+  /* Vertical snap scrolling */
+  scroll-behavior: smooth;
+  /* Smooth scrolling */
+  width: 100%;
+  overflow-y: auto;
+}
+
+.snap-active {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+
+}
+
+.snap-section {
+  height: 100vh;
+  /* Each section takes up the full viewport */
+  width: 100%;
+  scroll-snap-align: start;
+  /* Snap at the start of each section */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f0f0f0;
+  border-bottom: 2px solid #ccc;
+  scrollbar-width: 1px;
+}
+
+.nav-scroll-container {
+  display: flex;
+}
+
+.nav-container {
+  align-items: center;
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+  word-wrap: no-wrap;
+  size: 2rem;
+}
+
+nav p {
+  padding: 20px;
+}

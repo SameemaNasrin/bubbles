@@ -1,0 +1,13 @@
+<div class="nav-scroll-container">
+    <div class="nav-container">
+        <nav *ngFor="let nav of navs">
+            <p>{{nav}}</p>
+        </nav>
+    </div>
+    <div class="scroll-container" (scroll)="activateSnapScroll($event)">
+        <section class="snap-section" *ngFor="let section of sections">
+            <h2>Section {{ section }}</h2>
+            <p>Content for section {{ section }}</p>
+        </section>
+    </div>
+</div>
