@@ -100,3 +100,7 @@
     object-fit: cover;
     overflow: hidden;
 }
+
+app-snap-section, app-footer-section, .base-div, .video-frame{
+    overflow-x: hidden;
+}

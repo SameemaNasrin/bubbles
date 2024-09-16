@@ -24,24 +24,272 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #f0f0f0;
+  /* background-color: #f0f0f0; */
   border-bottom: 2px solid #ccc;
   scrollbar-width: 1px;
 }
 
 .nav-scroll-container {
   display: flex;
+  background-color: var(--snap-scroll-background);
 }
 
 .nav-container {
-  align-items: center;
   align-self: center;
   display: flex;
   flex-direction: column;
   word-wrap: no-wrap;
-  size: 2rem;
+  font-size: 0.9rem;
+  min-width: 15%;
 }
 
-nav p {
-  padding: 20px;
+nav a {
+  padding-left: 20px;
+  text-decoration: none;
+  word-wrap: no-wrap;
+  word-break: keep-all;
+  line-height: 2rem;
 }
+
+.snap-section-div {
+  background-color: white;
+  height: 80vh;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+  justify-content: center;
+  padding: 10%;
+  border-radius: 10px;
+
+}
+
+#who-we-are p {
+  padding: 20px 0;
+  line-height: 1.5rem;
+  font-size: 1rem;
+}
+
+#what-we-do div {
+  font-size: 5vw;
+  text-align: justify;
+  line-height: 4.5rem;
+  word-break: keep-all;
+  white-space: nowrap;
+}
+
+.fill-space {
+  background-color: #D9D9D9;
+  color: #D9D9D9;
+  min-width: 10px;
+  margin: 10px;
+  user-select: none;
+}
+
+.circular-fill-space {
+  min-width: 10vw;
+  min-height: 10vw;
+  border-radius: 50%;
+  user-select: none;
+}
+
+.principle-card {
+  margin: 20px 40px 20px 20px;
+  display: flex;
+  flex-direction: row;
+}
+
+.principle-card img {
+  margin-bottom: 10px;
+  max-width: 60px;
+}
+
+#our-principles {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (max-width: 480px) {
+  #our-principles {
+    display: block;
+  }
+
+  .principle-card {
+    margin: 10px 0px;
+  }
+
+  .snap-section-div {
+    overflow-y: scroll;
+  }
+}
+
+#why-choose-us p {
+  margin: 20px;
+}
+
+#why-choose-us img {
+  margin: 20px;
+  width: -moz-available;
+  width: -webkit-fill-available;
+  width: fill-available;
+}
+
+.case-study-card {
+  width: 100%;
+  min-height: 100%;
+  border-radius: 10px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-color: black;
+  background-position: center;
+  background-size: cover;
+}
+
+.case-study-card mat-card-content {
+  height: 100%;
+  width: 45%;
+  background-color: rgba(0, 0, 0, 0.40);
+  backdrop-filter: blur(10px);
+  border-radius: 10px 0 0 10px;
+  background-repeat: no-repeat;
+  background-position: center;
+  object-fit: cover;
+  overflow: hidden;
+}
+
+
+.case-study-card mat-card-content p {
+  color: white;
+  font-size: 2rem;
+  padding: 10px;
+  margin-top: 30%;
+}
+
+.tag {
+  border-radius: 20px;
+  background-color: var(--tag-background-color) !important;
+  color: var(--tag-color);
+  padding: 10px;
+  margin-right: 10px;
+  font-size: 0.8rem;
+}
+
+#case-studies {
+  padding: 0;
+  justify-content: initial
+}
+
+#view-project {
+  color: white;
+  background-color: transparent;
+  border: none;
+  font-size: 0.8rem;
+  margin-top: 20%;
+}
+
+#view-peoject-arrow {
+  max-width: 0.5rem;
+}
+
+.example-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.example-container>* {
+  width: 100%;
+}
+
+
+form {
+  display: grid;
+  /* grid-template-rows: 1fr 1fr; */
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 20px;
+}
+
+::ng-deep .mdc-text-field {
+  background-color: transparent !important;
+}
+
+::ng-deep .mat-mdc-form-field-infix {
+  /* padding: 0 !important; */
+  width: auto !important;
+}
+
+::ng-deep .mat-mdc-form-field-subscript-wrapper {
+  height: 0;
+}
+
+::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+  font-size: 0.8rem !important;
+  font-weight: bold;
+}
+
+::ng-deep .mat-mdc-text-field-wrapper .mat-mdc-form-field-input-control {
+  font-size: 0.9rem !important;
+}
+
+#budget-type {
+  border: 1px solid rgba(0, 0, 0, 0.42);
+  border-radius: 50px;
+  width: fit-content;
+  height: 40px
+}
+
+::ng-deep .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+  height: 40px;
+  width: auto;
+  margin-top: -10px;
+}
+
+::ng-deep #budget-type .mdc-line-ripple {
+  display: none;
+}
+
+::ng-deep .mat-mdc-select-value-text {
+  font-size: o.9rem !important;
+}
+
+::ng-deep .mat-mdc-select-value-text {
+  font-size: 0.8rem !important;
+}
+
+.contac-form-submit-button {
+  margin: 10px;
+}
+
+#what-we-do div p {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.fill-space {
+  flex-grow: 1;
+}
+
+#footer{
+  /* position: absolute;
+  bottom: 0;
+  width: 100%; */
+  z-index: 9999;
+  /* display: none; */
+}
+
+/* Hide scrollbar for Chrome, Safari and Edge */
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for Firefox */
+.scroll-container {
+  scrollbar-width: none; /* Hide scrollbar */
+}
+
+/* Hide scrollbar for Internet Explorer and Edge */
+.scroll-container {
+  -ms-overflow-style: none; /* IE and Edge */
+}
+ 

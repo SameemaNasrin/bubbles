@@ -1,13 +1,130 @@
-<div class="nav-scroll-container">
-    <div class="nav-container">
-        <nav *ngFor="let nav of navs">
-            <p>{{nav}}</p>
-        </nav>
-    </div>
-    <div class="scroll-container" (scroll)="activateSnapScroll($event)">
-        <section class="snap-section" *ngFor="let section of sections">
-            <h2>Section {{ section }}</h2>
-            <p>Content for section {{ section }}</p>
-        </section>
-    </div>
+<div class="snap-scroll-footer-container">
+
+    <mat-drawer-container class="nav-scroll-container">
+        <mat-drawer mode="side" opened class="nav-container">
+            <nav *ngFor="let nav of navs">
+                <a [href]="nav.id" id="nav-id">{{nav.name}}</a>
+            </nav>
+        </mat-drawer>
+        <mat-drawer-content class="scroll-container" (scroll)="activateSnapScroll($event)">
+            <section class="snap-section">
+                <div class="snap-section-div" id="who-we-are">
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eveniet harum
+                        corporis
+                        numquam ad sunt atque possimus ipsam accusantium. Architecto inventore asperiores beatae
+                        voluptates
+                        dolores quas incidunt porro non?</p>
+                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eveniet harum
+                        corporis
+                        numquam ad sunt atque possimus ipsam accusantium. Architecto inventore asperiores beatae
+                        voluptates
+                        dolores quas incidunt porro non?</p>
+                </div>
+            </section>
+            <section class="snap-section">
+                <div class="snap-section-div" id="what-we-do">
+                    <div>
+                        <p><span>Strategic Design,</span><span class="fill-space"></span></p>
+                        <p><span>MVP</span><span class="fill-space"></span><span>& Product Design</span></p>
+                        <p><span>Branding</span><span class="fill-space"></span><span>UX Solutions</span></p>
+                        <p><span class="fill-space circular-fill-space"></span><span>Web + App Development</span></p>
+                    </div>
+                </div>
+            </section>
+            <section class="snap-section">
+                <div class="snap-section-div" id="our-principles">
+                    @for (principle of principles; track principle){
+                    <mat-card class="principle-card">
+                        <mat-card-content>
+                            <img [src]="principle.img" alt="principle img" class="principle-img">
+                            <p>{{principle.desc}}</p>
+                        </mat-card-content>
+                    </mat-card>
+                    }
+                </div>
+            </section>
+            <section class="snap-section">
+                <div class="snap-section-div" id="why-choose-us">
+                    <p>We not only provide a premium user experience to your customers but also to our clients.</p>
+                    <img src="assets/why-choose-us.svg" alt="why-choose-us">
+                </div>
+            </section>
+            <section class="snap-section">
+                <div class="snap-section-div" id="case-studies">
+                    @for (caseStudy of caseStudies; track caseStudy){
+                    <mat-card class="case-study-card" [ngStyle]="{'background-image': 'url(\'/assets/MOCKUP 5.svg\')'}">
+                        <mat-card-content>
+                            <p>{{caseStudy.applicationName}}</p>
+                            @for(tag of caseStudy.tags; track tag){
+                            <button mat-flat-button class="tag">{{tag}}</button>
+                            }
+                            <br>
+                            <button id="view-project">View project
+                                <img src="assets/Arrow 1.svg" alt="Arrow" id="view-peoject-arrow">
+                            </button>
+                        </mat-card-content>
+                    </mat-card>
+                    }
+                </div>
+            </section>
+            <section class="snap-section">
+                <div class="snap-section-div" id="get-in-touch">
+                    <h1>We are here for you! Let’s get Started</h1>
+                    <!-- contact form -->
+                    <div class="contact-form">
+                        <form [formGroup]="contactForm">
+
+                            <mat-form-field>
+                                <mat-label>What’s your name?</mat-label>
+                                <input matInput placeholder="Full Name" formControlName="name">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Name of your Company/ Org</mat-label>
+                                <input matInput placeholder="Company Name" formControlName="company">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>How shall we contact you?</mat-label>
+                                <input matInput placeholder="Phone Number" formControlName="contact">
+                            </mat-form-field>
+                            <mat-form-field>
+                                <mat-label>Name of your Company/ Org</mat-label>
+                                <input matInput placeholder="Email Address" formControlName="companyName">
+                            </mat-form-field>
+
+                            <ng-container>
+                                <mat-form-field>
+                                    <mat-label>What’s your budget?</mat-label>
+                                    <input matInput placeholder="Budget" formControlName="budget">
+                                </mat-form-field>
+                                <mat-form-field id="budget-type">
+                                    <mat-label>Budget Type</mat-label>
+                                    <mat-select formControlName="budgetType">
+                                        <mat-option value="overall">overall</mat-option>
+                                        <mat-option value="partial">partial</mat-option>
+                                    </mat-select>
+                                </mat-form-field>
+                            </ng-container>
+                            <mat-form-field>
+                                <mat-label>Tell us about the project</mat-label>
+                                <textarea matInput placeholder="Give us a brief"
+                                    formControlName="projectDesc"></textarea>
+                            </mat-form-field>
+                        </form>
+                        <button mat-stroked-button (click)="onSubmit()"
+                            class="contac-form-submit-button">Submit</button><!--[disabled]="contactForm.invalid"-->
+                    </div>
+
+                </div>
+            </section>
+            <!-- <section class="snap-section snap-section-footer">
+                <div class="snap-section-div snap-section-footer-div">
+                    <app-footer-section></app-footer-section>
+                </div>
+            </section> -->
+
+        </mat-drawer-content>
+    </mat-drawer-container>
+    <footer id="footer" #footer>
+        <app-footer-section></app-footer-section>
+    </footer>
 </div>

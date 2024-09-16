@@ -1,18 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: "Playfair Display", system-ui;
     font-optical-sizing: auto;
     font-weight: 400;
-    font-style: normal; 
+    font-style: normal;
     --primary-color: #D6E7CB;
     --primary-color-darker: #CEDFC3;
     --font-color: #1D1E20;
+    --snap-scroll-background: #E7DDCB;
+    --tag-background-color: #E1ECD8;
+    --tag-color: #525A4A;
+    --footer-background: #626F59;
     color: var(--font-color);
 }
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+}

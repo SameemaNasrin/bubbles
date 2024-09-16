@@ -1,0 +1,24 @@
+<div class="footer-container">
+    <ul>
+        <li class="footer-header">DESIGN</li>
+        @for(d of designServies; track d){
+        <li>{{d}}</li>
+        }
+    </ul>
+    <ul>
+        <li class="footer-header">DEVELOPMENT</li>
+        @for(d of developmentServices; track d){
+        <li>{{d}}</li>
+        }
+    </ul>
+    <ul>
+        @for(d of constactInfo; track d){
+        <li>{{d}}</li>
+        @if(d.indexOf("All rights reserved") >=0){
+        <li>
+            <hr>
+        </li>
+        }
+        }
+    </ul>
+</div>

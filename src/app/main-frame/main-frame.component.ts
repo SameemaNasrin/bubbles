@@ -3,11 +3,12 @@ import { HeaderComponent } from '../Components/header/header.component';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { SnapSectionComponent } from '../Components/snap-section/snap-section.component';
+import { FooterSectionComponent } from '../Components/footer-section/footer-section.component';
 
 @Component({
   selector: 'app-main-frame',
   standalone: true,
-  imports: [HeaderComponent, SnapSectionComponent],
+  imports: [HeaderComponent, SnapSectionComponent, FooterSectionComponent],
   templateUrl: './main-frame.component.html',
   styleUrl: './main-frame.component.css'
 })
@@ -34,27 +35,46 @@ export class MainFrameComponent implements AfterViewInit {
   initScrollTrigger() {
     gsap.timeline({
       scrollTrigger: {
-        trigger: ".video-frame",   // Ensure this targets the video block
-        start: "top 40%",          // Adjust start and end to control animation points
-        end: "top 20%",
-        scrub: true,
-        //markers: true,            // For debugging
+        trigger: ".video-frame",   // The video section
+        start: "top 40%",          // When the top of the video reaches 40% of the viewport
+        end: "top top",            // When the top of the video reaches the top of the viewport
+        scrub: true,               // Smooth scroll behavior
+        // markers: true,
         onEnter: () => {
+          // Shrink the video when reaching 40%
           gsap.to(".video-frame", {
-            scale: 0.9,            // Shrinks the video when entering the scroll area
-            duration: 1,
+            scale: 0.9,            // Shrink the video frame to 90%
             borderRadius: '40px',
+            duration: 1,
             ease: "power2.out"
           });
         },
         onLeaveBack: () => {
+          // Reset the video size when scrolling back up
           gsap.to(".video-frame", {
-            scale: 1,              // Expands the video when leaving the scroll area
+            scale: 1,              // Restore the original size
             borderRadius: '0px',
             duration: 1,
             ease: "power2.out"
           });
         }
+      }
+    });
+
+    // ScrollTrigger for snapping the video section into full view
+    gsap.timeline({
+      scrollTrigger: {
+        trigger: ".video-frame",   // The video section
+        start: "bottom 80%",          // When the video reaches the top of the viewport
+        pin: true,                 // Pin the video section (it stays fixed until scrolled past)
+        scrub: true,               // Smooth scrolling behavior
+        snap: {
+          snapTo: 1,               // Snap to the full view of the video section
+          duration: { min: 0.1, max: 1 },  // Duration of the snap
+          ease: "power2.inOut"      // Ease function for smooth snapping
+        },
+        end: "+=80%",             // Snap to the next section after scrolling through the video
+        pinSpacing: false          // Avoid extra space after the pin
       }
     });
   }

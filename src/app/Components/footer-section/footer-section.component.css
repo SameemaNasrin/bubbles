@@ -1,0 +1,22 @@
+.footer-container{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 20px 0;
+    overflow-y: hidden;
+    background-color: var(--footer-background);
+}
+
+li{
+    list-style: none;
+    font-size: 0.6rem;
+    font-weight: lighter;
+    color: white;
+    line-height: 1.2rem;
+}
+
+.footer-header{
+    color: #BDFCBC;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
