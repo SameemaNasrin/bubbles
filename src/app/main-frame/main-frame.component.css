@@ -1,5 +1,5 @@
 .base-div {
-    background-image: url('assets/Base Frame.svg');
+    background-image: url("../../assets/BaseFrame.svg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
