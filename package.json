@@ -23,6 +23,8 @@
     "@emailjs/browser": "^4.4.1",
     "@types/gsap": "^3.0.0",
     "gsap": "^3.12.5",
+    "jquery": "^3.7.1",
+    "ngx-owl-carousel-o": "^17.0.0",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"

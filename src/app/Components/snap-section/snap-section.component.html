@@ -49,10 +49,11 @@
                     <img src="assets/why-choose-us.svg" alt="why-choose-us">
                 </div>
             </section>
-            <section class="snap-section" id="case-studies-section">
+            <section class="snap-section case-study-cards" id="case-studies-section">
                 <div class="snap-section-div" id="case-studies">
                     @for (caseStudy of caseStudies; track caseStudy){
-                    <mat-card class="case-study-card" [ngStyle]="{'background-image': 'url(\'/assets/MOCKUP 5.svg\')'}">
+                    <mat-card #caseStudyCard class="case-study-card"
+                        [ngStyle]="{'background-image': 'url(\'/assets/MOCKUP 5.svg\')'}" (click)="popCaseStudy($event)">
                         <mat-card-content>
                             <p>{{caseStudy.applicationName}}</p>
                             @for(tag of caseStudy.tags; track tag){
@@ -77,29 +78,34 @@
                             <mat-form-field>
                                 <mat-label>What’s your name?</mat-label>
                                 <input matInput placeholder="Full Name" formControlName="name">
-                                <mat-error *ngIf="contactForm.controls['name'].invalid">{{getErrorMessage()}}</mat-error>
+                                <mat-error
+                                    *ngIf="contactForm.controls['name'].invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
                             <mat-form-field>
                                 <mat-label>Name of your Company/ Org</mat-label>
                                 <input matInput placeholder="Company Name" formControlName="company">
-                                <mat-error *ngIf="contactForm.controls['company'].invalid">{{getErrorMessage()}}</mat-error>
+                                <mat-error
+                                    *ngIf="contactForm.controls['company'].invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
                             <mat-form-field>
                                 <mat-label>How shall we contact you?</mat-label>
                                 <input matInput placeholder="Phone Number" formControlName="contact">
-                                <mat-error *ngIf="contactForm.controls['contact'].invalid">{{getErrorMessage()}}</mat-error>
+                                <mat-error
+                                    *ngIf="contactForm.controls['contact'].invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
                             <mat-form-field>
                                 <mat-label>Name of your Company/ Org</mat-label>
                                 <input matInput placeholder="Email Address" formControlName="companyName">
-                                <mat-error *ngIf="contactForm.controls['companyName'].invalid">{{getErrorMessage()}}</mat-error>
+                                <mat-error
+                                    *ngIf="contactForm.controls['companyName'].invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
 
                             <ng-container>
                                 <mat-form-field>
                                     <mat-label>What’s your budget?</mat-label>
                                     <input matInput placeholder="Budget" formControlName="budget">
-                                    <mat-error *ngIf="contactForm.controls['budget'].invalid">{{getErrorMessage()}}</mat-error>
+                                    <mat-error
+                                        *ngIf="contactForm.controls['budget'].invalid">{{getErrorMessage()}}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field id="budget-type">
                                     <mat-label>Budget Type</mat-label>
@@ -107,14 +113,16 @@
                                         <mat-option value="overall">overall</mat-option>
                                         <mat-option value="partial">partial</mat-option>
                                     </mat-select>
-                                    <mat-error *ngIf="contactForm.controls['budgetType'].invalid">{{getErrorMessage()}}</mat-error>
+                                    <mat-error
+                                        *ngIf="contactForm.controls['budgetType'].invalid">{{getErrorMessage()}}</mat-error>
                                 </mat-form-field>
                             </ng-container>
                             <mat-form-field>
                                 <mat-label>Tell us about the project</mat-label>
                                 <textarea matInput placeholder="Give us a brief"
                                     formControlName="projectDesc"></textarea>
-                                <mat-error *ngIf="contactForm.controls['projectDesc'].invalid">{{getErrorMessage()}}</mat-error>
+                                <mat-error
+                                    *ngIf="contactForm.controls['projectDesc'].invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
                         </form>
                         <button mat-stroked-button (click)="onSubmit()" class="contac-form-submit-button"

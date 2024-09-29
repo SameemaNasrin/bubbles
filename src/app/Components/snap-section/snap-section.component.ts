@@ -1,22 +1,23 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { MatCardModule } from '@angular/material/card';
-import { MatButtonModule } from '@angular/material/button';
-import { MatSelectModule } from '@angular/material/select';
-import { MatInputModule } from '@angular/material/input';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
 import { MatSidenavModule } from '@angular/material/sidenav';
-import { FooterSectionComponent } from '../footer-section/footer-section.component';
+import emailjs from '@emailjs/browser';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
-import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
+import { CarouselModule } from 'ngx-owl-carousel-o';
+import { FooterSectionComponent } from '../footer-section/footer-section.component';
 
 
 @Component({
   selector: 'app-snap-section',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatSidenavModule, FooterSectionComponent],
+  imports: [CarouselModule, CommonModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatSidenavModule, FooterSectionComponent],
   templateUrl: './snap-section.component.html',
   styleUrl: './snap-section.component.css'
 })
@@ -76,21 +77,52 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
       "aplicationBackgroundImage": "/assets/Gate.svg"
     },
     {
-      "applicationName": "Name of Application",
+      "applicationName": "2",
+      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
+      "aplicationBackgroundImage": "/assets/Bubble.svg"
+    },
+    {
+      "applicationName": "3",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
       "aplicationBackgroundImage": "/assets/Gate.svg"
     },
     {
-      "applicationName": "Name of Application",
+      "applicationName": "4",
+      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
+      "aplicationBackgroundImage": "/assets/Gate.svg"
+    },
+    {
+      "applicationName": "5",
+      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
+      "aplicationBackgroundImage": "/assets/Gate.svg"
+    },
+    {
+      "applicationName": "6",
+      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
+      "aplicationBackgroundImage": "/assets/Gate.svg"
+    },
+    {
+      "applicationName": "7",
+      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
+      "aplicationBackgroundImage": "/assets/Gate.svg"
+    },
+    {
+      "applicationName": "8",
+      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
+      "aplicationBackgroundImage": "/assets/Gate.svg"
+    },
+    {
+      "applicationName": "9",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
       "aplicationBackgroundImage": "/assets/Gate.svg"
     }
-  ]
+  ];
 
   @ViewChild('footer', { static: false }) footerElement!: ElementRef; // Reference to the footer element
 
   contactForm: FormGroup;
-  constructor(private el: ElementRef, private renderer: Renderer2, private fb: FormBuilder) {
+  constructor(private el: ElementRef, private renderer: Renderer2, private fb: FormBuilder,
+  ) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required]],
       company: ['', [Validators.required]],
@@ -104,12 +136,12 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
+    
+  }
+  ngAfterViewInit(): void {
     this.initScrollTrigger();
   }
 
-  ngAfterViewInit(): void {
-    // document.addEventListener('scroll', () => this.scrollEventListner());
-  }
 
   activateSnapScroll(event: Event) {
     const container = this.el.nativeElement.querySelector('.scroll-container');
@@ -127,7 +159,7 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   onSubmit(): void {
     if (this.contactForm.valid) {
       console.log('Form Data:', this.contactForm.value);
-  
+
       const body = {
         from_name: this.contactForm.value.name,
         to_name: 'Bubbles', // Set recipient's name
@@ -139,14 +171,14 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
         projectDesc: this.contactForm.value.projectDesc,
         reply_to: this.contactForm.value.email, // Assuming you have an email field
       };
-  
+
       // Call sendEmail and pass form data
       this.sendEmail(body);
     } else {
       console.log('Form is invalid');
     }
   }
-  
+
   public sendEmail(body: any): void {
     // Map template parameters to your EmailJS template
     const templateParams = {
@@ -159,7 +191,7 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
       budgetType: body.budgetType,
       projectDesc: body.projectDesc,
     };
-  
+
     emailjs
       .send('service_vrn1bv4', 'template_b7dmdci', templateParams, 'VeruUBjIAMcmxkkXU')
       .then(
@@ -171,10 +203,10 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
         }
       );
   }
-  
+
   getErrorMessage() {
     return 'You must enter a value';
-           
+
   }
 
   get form() {
@@ -212,12 +244,14 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
     // });
 
     // ScrollTrigger for snapping the video section into full view
+    console.log('card')
     gsap.timeline({
       scrollTrigger: {
-        trigger: ".case-study-card",   // The video section
-        start: "bottom bottom",          // When the video reaches the top of the viewport
+        trigger: "#case-studies",   // The video section
+        start: "top top",          // When the video reaches the top of the viewport
         pin: true,                 // Pin the video section (it stays fixed until scrolled past)
         scrub: true,               // Smooth scrolling behavior
+        // markers: true,
         snap: {
           snapTo: 1,               // Snap to the full view of the video section
           duration: { min: 0.1, max: 1 },  // Duration of the snap
@@ -230,11 +264,28 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
 
   }
 
+  // scrollPosition = 0;
+  // @HostListener('window:scroll', ['$event'])
+  // onWindowScroll(event: Event): void {
+  //   const scrollTop = window.scrollY || document.documentElement.scrollTop;
+  //   this.scrollPosition = scrollTop;
+  // }
+
+  // getCardStyles(index: number): any {
+  //   const scaleFactor = Math.max(0.8, 1 - (this.scrollPosition - (index * 200)) / 1000);
+  //   const translateY = Math.max(0, (this.scrollPosition - (index * 200)) / 5);
+
+  //   return {
+  //     transform: `scale(${scaleFactor}) translateY(${translateY}px)`,
+  //     zIndex: index
+  //   };
+  // }
+
   // scrollEventListner = () => {  // Use arrow function here to preserve 'this'
   //   const scrollTop = window.scrollY || document.documentElement.scrollTop;
   //   const scrollHeight = document.documentElement.scrollHeight;
   //   const clientHeight = document.documentElement.clientHeight;
-  
+
   //   const scrollPercent = (scrollTop / (scrollHeight - clientHeight)) * 100;
   //   console.info(scrollPercent)
   //   if (scrollPercent > 99) {// Alternatively with renderer
@@ -244,4 +295,119 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   //     this.renderer.setStyle(this.footerElement.nativeElement, 'display', 'none');
   //   }
   // }
+  currCaseStudy = 0;
+  popCaseStudy(ele: any) {
+    // Find the clicked card and its index
+    const clickedCard = ele.target.closest('.case-study-card'); // Get the closest card
+    const cards = document.querySelectorAll('.case-study-card');
+    const clickedIndex = Array.from(cards).indexOf(clickedCard);
+    // if(this.currCaseStudy != clickedIndex){
+      
+    // }
+    console.log(clickedCard)
+    // console.log(this.currCaseStudy + ' ' + clickedIndex)
+    // Animate prev cards
+    let prevDec = 30;
+    var prevScale = 1;
+    for (let i = 0; i <= clickedIndex; i++) {
+      const prevCard = cards[i];
+      let prevY;
+      if (i >= clickedIndex - 2) {
+        prevY = `-${(((i) * 100) + prevDec)}%`;
+        prevDec -= 10;
+        prevScale = 0.8;
+      }
+      else {
+        prevY = `-${(((i) * 100) + 10)}%`;
+        prevScale = 0.8;
+      }
+      // Move each subsequent card to the previous card's position, relative to its current position
+      gsap.to(prevCard, {
+        y: prevY, 
+        scale: prevScale,
+        duration: 0.4,
+        ease: "power2.out"
+      });
+    }
+
+    let currY;
+    currY = `-${100 * clickedIndex + 10}%`
+    // Animate the clicked card
+    gsap.to(clickedCard, {
+      y: currY,           // Move the clicked card up by 10%
+      scale: 0.9,         // Scale down to 0.9
+      duration: 0.4,      // Animation duration
+      ease: "power2.out", // Easing effect
+    });
+
+    // Animate subsequent cards to take the position of the one above
+    for (let i = clickedIndex + 1; i < cards.length; i++) {
+      const nextCard = cards[i];
+
+      // Calculate the current Y position of the next card
+      const currentY = parseFloat(getComputedStyle(nextCard).transform.split(',')[5]) || 0;
+      let nextY;
+      if (i == (clickedIndex + 1)) {
+        nextY = `${-(i * 100)}%`
+      }
+      else {
+        nextY = `${-((i * 100) - 100)}%`
+      }
+      // Move each subsequent card to the previous card's position, relative to its current position
+      gsap.to(nextCard, {
+        y: nextY, // Move the next card to the previous card's position based on its current position
+        duration: 0.4,            // Animation duration
+        ease: "power2.out"        // Easing effect
+      });
+    }
+    this.currCaseStudy = clickedIndex;
+  }
+
+  // popCaseStudy(ele: any) {
+  //   // Find the clicked card and its index
+  //   const clickedCard = ele.target.closest('.case-study-card') as HTMLElement; // Cast to HTMLElement
+  //   const cards = document.querySelectorAll('.case-study-card');
+  //   const clickedIndex = Array.from(cards).indexOf(clickedCard);
+
+  //   // Animate the clicked card
+  //   gsap.to(clickedCard, {
+  //     y: "-10%",           // Move the clicked card up by 10%
+  //     scale: 0.9,         // Scale down to 0.9
+  //     duration: 0.4,      // Animation duration
+  //     ease: "power2.out", // Easing effect
+  //   });
+
+  //   // Animate subsequent cards to take the position of the one above
+  //   for (let i = clickedIndex + 1; i < cards.length; i++) {
+  //     const nextCard = cards[i] as HTMLElement; // Cast to HTMLElement
+
+  //     // Move each subsequent card to the previous card's position based on its original position
+  //     gsap.to(nextCard, {
+  //       y: `-100%`, // Move the next card fully into the display area
+  //       duration: 0.4,            // Animation duration
+  //       ease: "power2.out"        // Easing effect
+  //     });
+
+  //     // Update the card's style after the animation completes
+  //     gsap.delayedCall(0.4, () => {
+  //       nextCard.style.transform = `translateY(-${(i - clickedIndex) * 100}%)`; // Update position
+  //     });
+  //   }
+
+  //   // After the animation, reset the clicked card's position
+  //   gsap.to(clickedCard, {
+  //     y: "0", // Reset the clicked card's position
+  //     scale: 1, // Reset scale
+  //     duration: 0.4,
+  //     delay: 0.4, // Delay this reset so it happens after the first animation
+  //     ease: "power2.out",
+  //     onComplete: () => {
+  //       // Update the clicked card's final position in the DOM
+  //       clickedCard.style.transform = `translateY(0)`;
+  //     }
+  //   });
+  // }
+
+
+
 }

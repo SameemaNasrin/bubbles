@@ -297,17 +297,22 @@ form {
 
 #case-studies-section{
   overflow: hidden;
+  /* display: flex; */
 }
 
 
 /* add scroll effect to case studies */
-#case-studies{
+/* #case-studies{
   overflow-y: scroll;
   scroll-snap-type: y mandatory;
   scrollbar-width: 1px;
 
-}
+} */
 
 mat-error{
   font-size: 10px;
+}
+
+.show{
+  display: none;
 }
