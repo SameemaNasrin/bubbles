@@ -52,19 +52,19 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   ];
   principles = [
     {
-      img: '/assets/Bubble.svg',
+      img: 'assets/Bubble.svg',
       desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
     },
     {
-      img: '/assets/Bubble.svg',
+      img: 'assets/Bubble.svg',
       desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
     },
     {
-      img: '/assets/Bubble.svg',
+      img: 'assets/Bubble.svg',
       desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
     },
     {
-      img: '/assets/Bubble.svg',
+      img: 'assets/Bubble.svg',
       desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
     },
 
@@ -74,47 +74,47 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
     {
       "applicationName": "Name of Application",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "/assets/Gate.svg"
+      "aplicationBackgroundImage": "assets/Gate.svg"
     },
     {
       "applicationName": "2",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "/assets/Bubble.svg"
+      "aplicationBackgroundImage": "assets/Bubble.svg"
     },
     {
       "applicationName": "3",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "/assets/Gate.svg"
+      "aplicationBackgroundImage": "assets/Gate.svg"
     },
     {
       "applicationName": "4",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "/assets/Gate.svg"
+      "aplicationBackgroundImage": "assets/Gate.svg"
     },
     {
       "applicationName": "5",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "/assets/Gate.svg"
+      "aplicationBackgroundImage": "assets/Gate.svg"
     },
     {
       "applicationName": "6",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "/assets/Gate.svg"
+      "aplicationBackgroundImage": "assets/Gate.svg"
     },
     {
       "applicationName": "7",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "/assets/Gate.svg"
+      "aplicationBackgroundImage": "assets/Gate.svg"
     },
     {
       "applicationName": "8",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "/assets/Gate.svg"
+      "aplicationBackgroundImage": "assets/Gate.svg"
     },
     {
       "applicationName": "9",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "/assets/Gate.svg"
+      "aplicationBackgroundImage": "assets/Gate.svg"
     }
   ];
 
