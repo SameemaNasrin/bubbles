@@ -41,6 +41,7 @@
   word-wrap: no-wrap;
   font-size: 0.9rem;
   min-width: 15%;
+  background-color: var(--snap-scroll-background);
 }
 
 nav a {
@@ -293,3 +294,20 @@ form {
   -ms-overflow-style: none; /* IE and Edge */
 }
  
+
+#case-studies-section{
+  overflow: hidden;
+}
+
+
+/* add scroll effect to case studies */
+#case-studies{
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: 1px;
+
+}
+
+mat-error{
+  font-size: 10px;
+}

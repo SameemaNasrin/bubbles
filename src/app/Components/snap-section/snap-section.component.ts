@@ -10,6 +10,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { FooterSectionComponent } from '../footer-section/footer-section.component';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+import emailjs, { type EmailJSResponseStatus } from '@emailjs/browser';
+
 
 @Component({
   selector: 'app-snap-section',
@@ -22,28 +24,28 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   sections = [1, 2, 3, 4, 5]; // You can adjust the sections as needed
   navs = [
     {
-      "id": "#who-we-are",
+      "id": "#who-we-are-section",
       "name": "Who We Are?"
     },
     {
-      "id": "#what-we-do",
+      "id": "#what-we-do-section",
       "name": "What We Do?"
     },
     {
-      "id": "#our-principles",
+      "id": "#our-principles-section",
       "name": "Our Principles"
     },
     {
-      "id": "#why-choose-us",
+      "id": "#why-choose-us-section",
       "name": "Why Choose Us?"
     },
 
     {
-      "id": "#case-studies",
+      "id": "#case-studies-section",
       "name": "Case Studies"
     },
     {
-      "id": "#get-in-touch",
+      "id": "#get-in-touch-section",
       "name": "Get In Touch"
     }
   ];
@@ -72,18 +74,17 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
       "applicationName": "Name of Application",
       "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
       "aplicationBackgroundImage": "/assets/Gate.svg"
+    },
+    {
+      "applicationName": "Name of Application",
+      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
+      "aplicationBackgroundImage": "/assets/Gate.svg"
+    },
+    {
+      "applicationName": "Name of Application",
+      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
+      "aplicationBackgroundImage": "/assets/Gate.svg"
     }
-    // ,
-    // {
-    //   "applicationName": "Name of Application",
-    //   "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-    //   "aplicationBackgroundImage": "/assets/Gate.svg"
-    // },
-    // {
-    //   "applicationName": "Name of Application",
-    //   "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-    //   "aplicationBackgroundImage": "/assets/Gate.svg"
-    // }
   ]
 
   @ViewChild('footer', { static: false }) footerElement!: ElementRef; // Reference to the footer element
@@ -124,12 +125,56 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   }
 
   onSubmit(): void {
-    // if (this.contactForm.valid) {
-    //   console.log('Form Data:', this.contactForm.value);
-    //   // You can handle form submission here (e.g., send data to the server)
-    // } else {
-    console.log('Form is invalid');
-    // }
+    if (this.contactForm.valid) {
+      console.log('Form Data:', this.contactForm.value);
+  
+      const body = {
+        from_name: this.contactForm.value.name,
+        to_name: 'Bubbles', // Set recipient's name
+        name: this.contactForm.value.name,
+        company: this.contactForm.value.company,
+        contact: this.contactForm.value.contact,
+        budget: this.contactForm.value.budget,
+        budgetType: this.contactForm.value.budgetType, // Ensure this exists in your form
+        projectDesc: this.contactForm.value.projectDesc,
+        reply_to: this.contactForm.value.email, // Assuming you have an email field
+      };
+  
+      // Call sendEmail and pass form data
+      this.sendEmail(body);
+    } else {
+      console.log('Form is invalid');
+    }
+  }
+  
+  public sendEmail(body: any): void {
+    // Map template parameters to your EmailJS template
+    const templateParams = {
+      from_name: body.from_name,
+      to_name: body.to_name,
+      name: body.name,
+      company: body.company,
+      contact: body.contact,
+      budget: body.budget,
+      budgetType: body.budgetType,
+      projectDesc: body.projectDesc,
+    };
+  
+    emailjs
+      .send('service_vrn1bv4', 'template_b7dmdci', templateParams, 'VeruUBjIAMcmxkkXU')
+      .then(
+        (response) => {
+          console.log('SUCCESS!', response.status, response.text);
+        },
+        (error) => {
+          console.log('FAILED...', error.text);
+        }
+      );
+  }
+  
+  getErrorMessage() {
+    return 'You must enter a value';
+           
   }
 
   get form() {

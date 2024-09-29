@@ -7,7 +7,7 @@
             </nav>
         </mat-drawer>
         <mat-drawer-content class="scroll-container" (scroll)="activateSnapScroll($event)">
-            <section class="snap-section">
+            <section class="snap-section" id="who-we-are-section">
                 <div class="snap-section-div" id="who-we-are">
                     <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga necessitatibus eveniet harum
                         corporis
@@ -21,7 +21,7 @@
                         dolores quas incidunt porro non?</p>
                 </div>
             </section>
-            <section class="snap-section">
+            <section class="snap-section" id="what-we-do-section">
                 <div class="snap-section-div" id="what-we-do">
                     <div>
                         <p><span>Strategic Design,</span><span class="fill-space"></span></p>
@@ -31,7 +31,7 @@
                     </div>
                 </div>
             </section>
-            <section class="snap-section">
+            <section class="snap-section" id="our-principles-section">
                 <div class="snap-section-div" id="our-principles">
                     @for (principle of principles; track principle){
                     <mat-card class="principle-card">
@@ -43,13 +43,13 @@
                     }
                 </div>
             </section>
-            <section class="snap-section">
+            <section class="snap-section" id="why-choose-us-section">
                 <div class="snap-section-div" id="why-choose-us">
                     <p>We not only provide a premium user experience to your customers but also to our clients.</p>
                     <img src="assets/why-choose-us.svg" alt="why-choose-us">
                 </div>
             </section>
-            <section class="snap-section">
+            <section class="snap-section" id="case-studies-section">
                 <div class="snap-section-div" id="case-studies">
                     @for (caseStudy of caseStudies; track caseStudy){
                     <mat-card class="case-study-card" [ngStyle]="{'background-image': 'url(\'/assets/MOCKUP 5.svg\')'}">
@@ -67,7 +67,7 @@
                     }
                 </div>
             </section>
-            <section class="snap-section">
+            <section class="snap-section" id="get-in-touch-section">
                 <div class="snap-section-div" id="get-in-touch">
                     <h1>We are here for you! Let’s get Started</h1>
                     <!-- contact form -->
@@ -77,24 +77,29 @@
                             <mat-form-field>
                                 <mat-label>What’s your name?</mat-label>
                                 <input matInput placeholder="Full Name" formControlName="name">
+                                <mat-error *ngIf="contactForm.controls['name'].invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
                             <mat-form-field>
                                 <mat-label>Name of your Company/ Org</mat-label>
                                 <input matInput placeholder="Company Name" formControlName="company">
+                                <mat-error *ngIf="contactForm.controls['company'].invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
                             <mat-form-field>
                                 <mat-label>How shall we contact you?</mat-label>
                                 <input matInput placeholder="Phone Number" formControlName="contact">
+                                <mat-error *ngIf="contactForm.controls['contact'].invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
                             <mat-form-field>
                                 <mat-label>Name of your Company/ Org</mat-label>
                                 <input matInput placeholder="Email Address" formControlName="companyName">
+                                <mat-error *ngIf="contactForm.controls['companyName'].invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
 
                             <ng-container>
                                 <mat-form-field>
                                     <mat-label>What’s your budget?</mat-label>
                                     <input matInput placeholder="Budget" formControlName="budget">
+                                    <mat-error *ngIf="contactForm.controls['budget'].invalid">{{getErrorMessage()}}</mat-error>
                                 </mat-form-field>
                                 <mat-form-field id="budget-type">
                                     <mat-label>Budget Type</mat-label>
@@ -102,16 +107,18 @@
                                         <mat-option value="overall">overall</mat-option>
                                         <mat-option value="partial">partial</mat-option>
                                     </mat-select>
+                                    <mat-error *ngIf="contactForm.controls['budgetType'].invalid">{{getErrorMessage()}}</mat-error>
                                 </mat-form-field>
                             </ng-container>
                             <mat-form-field>
                                 <mat-label>Tell us about the project</mat-label>
                                 <textarea matInput placeholder="Give us a brief"
                                     formControlName="projectDesc"></textarea>
+                                <mat-error *ngIf="contactForm.controls['projectDesc'].invalid">{{getErrorMessage()}}</mat-error>
                             </mat-form-field>
                         </form>
-                        <button mat-stroked-button (click)="onSubmit()"
-                            class="contac-form-submit-button">Submit</button><!--[disabled]="contactForm.invalid"-->
+                        <button mat-stroked-button (click)="onSubmit()" class="contac-form-submit-button"
+                            [disabled]="contactForm.invalid">Submit</button><!--[disabled]="contactForm.invalid"-->
                     </div>
 
                 </div>
