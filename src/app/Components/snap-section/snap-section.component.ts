@@ -118,6 +118,8 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
     }
   ];
 
+  hoverImages = ['assets/Bubble.svg', 'assets/flower leave.svg', 'assets/star.svg', 'assets/MOCKUP 5.svg'];
+
   @ViewChild('footer', { static: false }) footerElement!: ElementRef; // Reference to the footer element
 
   contactForm: FormGroup;
@@ -136,7 +138,7 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit(): void {
-    
+
   }
   ngAfterViewInit(): void {
     this.initScrollTrigger();
@@ -302,7 +304,7 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
     const cards = document.querySelectorAll('.case-study-card');
     const clickedIndex = Array.from(cards).indexOf(clickedCard);
     // if(this.currCaseStudy != clickedIndex){
-      
+
     // }
     console.log(clickedCard)
     // console.log(this.currCaseStudy + ' ' + clickedIndex)
@@ -323,7 +325,7 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
       }
       // Move each subsequent card to the previous card's position, relative to its current position
       gsap.to(prevCard, {
-        y: prevY, 
+        y: prevY,
         scale: prevScale,
         duration: 0.4,
         ease: "power2.out"
@@ -363,51 +365,58 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
     this.currCaseStudy = clickedIndex;
   }
 
-  // popCaseStudy(ele: any) {
-  //   // Find the clicked card and its index
-  //   const clickedCard = ele.target.closest('.case-study-card') as HTMLElement; // Cast to HTMLElement
-  //   const cards = document.querySelectorAll('.case-study-card');
-  //   const clickedIndex = Array.from(cards).indexOf(clickedCard);
+  showImage(event: any, pos: number) {
+    // Extract the mouse coordinates from the event
+    const mouseX = event.clientX;
+    const mouseY = event.clientY;
+    const imgSrc = this.hoverImages[pos];
+    // Create an img element
+    const img = document.createElement('img');
+    img.src = imgSrc; // Replace with your image URL
+    img.style.position = 'fixed';  // Positioning the image absolutely
+    img.style.maxWidth = '20vw';  // Set image size
+    img.style.height = '20vh';
+    img.style.zIndex = '10000';
+    img.style.left = `${mouseX}px`;
+    img.style.top = `${mouseY}px`;
 
-  //   // Animate the clicked card
-  //   gsap.to(clickedCard, {
-  //     y: "-10%",           // Move the clicked card up by 10%
-  //     scale: 0.9,         // Scale down to 0.9
-  //     duration: 0.4,      // Animation duration
-  //     ease: "power2.out", // Easing effect
-  //   });
+    img.id = 'hover-image'; // Assign an id to easily remove it later
+    // Add the image to the body
+    document.body.appendChild(img);
+  }
 
-  //   // Animate subsequent cards to take the position of the one above
-  //   for (let i = clickedIndex + 1; i < cards.length; i++) {
-  //     const nextCard = cards[i] as HTMLElement; // Cast to HTMLElement
+  hoverImage: HTMLElement | null = null;
 
-  //     // Move each subsequent card to the previous card's position based on its original position
-  //     gsap.to(nextCard, {
-  //       y: `-100%`, // Move the next card fully into the display area
-  //       duration: 0.4,            // Animation duration
-  //       ease: "power2.out"        // Easing effect
-  //     });
+  // Function to update the image position based on the mouse event
+  updateImgPos(event: MouseEvent) {
 
-  //     // Update the card's style after the animation completes
-  //     gsap.delayedCall(0.4, () => {
-  //       nextCard.style.transform = `translateY(-${(i - clickedIndex) * 100}%)`; // Update position
-  //     });
-  //   }
+    console.log("update img pos" + this.hoverImage)
+    // Ensure the image element is retrieved only once
+    if (!this.hoverImage) {
+      this.hoverImage = document.getElementById('hover-image');
+    }
 
-  //   // After the animation, reset the clicked card's position
-  //   gsap.to(clickedCard, {
-  //     y: "0", // Reset the clicked card's position
-  //     scale: 1, // Reset scale
-  //     duration: 0.4,
-  //     delay: 0.4, // Delay this reset so it happens after the first animation
-  //     ease: "power2.out",
-  //     onComplete: () => {
-  //       // Update the clicked card's final position in the DOM
-  //       clickedCard.style.transform = `translateY(0)`;
-  //     }
-  //   });
-  // }
+    // Check if the image element exists
+    if (this.hoverImage) {
+      const mouseX = event.clientX;
+      const mouseY = event.clientY;
+
+      console.log(mouseX)
+      // Use requestAnimationFrame for smoother updates
+      requestAnimationFrame(() => {
+        this.hoverImage!.style.left = `${mouseX + 10}px`;  // Offset to avoid overlap with the cursor
+        this.hoverImage!.style.top = `${mouseY + 10}px`;   // Offset to avoid overlap with the cursor
+      });
+    }
+  }
 
 
-
-}
+    hideImage(event: MouseEvent) {
+      this.hoverImage = null;
+      // Remove the image by its id
+      const img = document.getElementById('hover-image');
+      if (img) {
+        img.remove();
+      }
+    }
+  }

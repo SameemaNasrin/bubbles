@@ -316,3 +316,17 @@ mat-error{
 .show{
   display: none;
 }
+
+#image-container {
+  /* Optional: This container will hold the image. You can style it if needed. */
+}
+
+#fixed-image {
+  position: fixed;
+  top: 50%;  /* Adjust as needed */
+  left: 50%;  /* Adjust as needed */
+  transform: translate(-50%, -50%); /* Center the image in the viewport */
+  width: 200px;  /* Set your desired image size */
+  height: auto;  /* Maintain aspect ratio */
+  z-index: 1000;  /* Ensure it's above other elements */
+}

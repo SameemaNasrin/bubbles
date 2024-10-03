@@ -24,10 +24,10 @@
             <section class="snap-section" id="what-we-do-section">
                 <div class="snap-section-div" id="what-we-do">
                     <div>
-                        <p><span>Strategic Design,</span><span class="fill-space"></span></p>
-                        <p><span>MVP</span><span class="fill-space"></span><span>& Product Design</span></p>
-                        <p><span>Branding</span><span class="fill-space"></span><span>UX Solutions</span></p>
-                        <p><span class="fill-space circular-fill-space"></span><span>Web + App Development</span></p>
+                        <p><span>Strategic Design,</span><span class="fill-space" (mouseover)="showImage($event, 0)" (mouseout)="hideImage($event)" (mousemove)="updateImgPos($event)"></span></p>
+                        <p><span>MVP</span><span class="fill-space" (mouseover)="showImage($event, 1)" (mouseout)="hideImage($event)" (mousemove)="updateImgPos($event)"></span><span>& Product Design</span></p>
+                        <p><span>Branding</span><span class="fill-space" (mouseover)="showImage($event, 2)" (mouseout)="hideImage($event)" (mousemove)="updateImgPos($event)"></span><span>UX Solutions</span></p>
+                        <p><span class="fill-space circular-fill-space" (mouseover)="showImage($event, 3)" (mouseout)="hideImage($event)" (mousemove)="updateImgPos($event)"></span><span>Web + App Development</span></p>
                     </div>
                 </div>
             </section>
