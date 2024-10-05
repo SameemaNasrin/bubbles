@@ -12,7 +12,6 @@
 .snap-active {
   scroll-snap-type: y mandatory;
   overflow-y: scroll;
-
 }
 
 .snap-section {
@@ -63,7 +62,6 @@ nav a {
   justify-content: center;
   padding: 10%;
   border-radius: 10px;
-
 }
 
 #who-we-are p {
@@ -81,8 +79,8 @@ nav a {
 }
 
 .fill-space {
-  background-color: #D9D9D9;
-  color: #D9D9D9;
+  background-color: #d9d9d9;
+  color: #d9d9d9;
   min-width: 10px;
   margin: 10px;
   user-select: none;
@@ -150,7 +148,7 @@ nav a {
 .case-study-card mat-card-content {
   height: 100%;
   width: 45%;
-  background-color: rgba(0, 0, 0, 0.40);
+  background-color: rgba(0, 0, 0, 0.4);
   backdrop-filter: blur(10px);
   border-radius: 10px 0 0 10px;
   background-repeat: no-repeat;
@@ -158,7 +156,6 @@ nav a {
   object-fit: cover;
   overflow: hidden;
 }
-
 
 .case-study-card mat-card-content p {
   color: white;
@@ -178,7 +175,7 @@ nav a {
 
 #case-studies {
   padding: 0;
-  justify-content: initial
+  justify-content: initial;
 }
 
 #view-project {
@@ -198,10 +195,9 @@ nav a {
   flex-direction: column;
 }
 
-.example-container>* {
+.example-container > * {
   width: 100%;
 }
-
 
 form {
   display: grid;
@@ -223,7 +219,9 @@ form {
   height: 0;
 }
 
-::ng-deep .mat-mdc-form-field:not(.mat-form-field-disabled) .mat-mdc-floating-label.mdc-floating-label {
+::ng-deep
+  .mat-mdc-form-field:not(.mat-form-field-disabled)
+  .mat-mdc-floating-label.mdc-floating-label {
   font-size: 0.8rem !important;
   font-weight: bold;
 }
@@ -236,10 +234,12 @@ form {
   border: 1px solid rgba(0, 0, 0, 0.42);
   border-radius: 50px;
   width: fit-content;
-  height: 40px
+  height: 40px;
 }
 
-::ng-deep .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled) .mat-mdc-text-field-wrapper {
+::ng-deep
+  .mat-mdc-form-field-type-mat-select:not(.mat-form-field-disabled)
+  .mat-mdc-text-field-wrapper {
   height: 40px;
   width: auto;
   margin-top: -10px;
@@ -271,7 +271,7 @@ form {
   flex-grow: 1;
 }
 
-#footer{
+#footer {
   /* position: absolute;
   bottom: 0;
   width: 100%; */
@@ -293,13 +293,11 @@ form {
 .scroll-container {
   -ms-overflow-style: none; /* IE and Edge */
 }
- 
 
-#case-studies-section{
+#case-studies-section {
   overflow: hidden;
   /* display: flex; */
 }
-
 
 /* add scroll effect to case studies */
 /* #case-studies{
@@ -309,11 +307,11 @@ form {
 
 } */
 
-mat-error{
+mat-error {
   font-size: 10px;
 }
 
-.show{
+.show {
   display: none;
 }
 
@@ -323,10 +321,10 @@ mat-error{
 
 #fixed-image {
   position: fixed;
-  top: 50%;  /* Adjust as needed */
-  left: 50%;  /* Adjust as needed */
+  top: 50%; /* Adjust as needed */
+  left: 50%; /* Adjust as needed */
   transform: translate(-50%, -50%); /* Center the image in the viewport */
-  width: 200px;  /* Set your desired image size */
-  height: auto;  /* Maintain aspect ratio */
-  z-index: 1000;  /* Ensure it's above other elements */
+  width: 200px; /* Set your desired image size */
+  height: auto; /* Maintain aspect ratio */
+  z-index: 1000; /* Ensure it's above other elements */
 }

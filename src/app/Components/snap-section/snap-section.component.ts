@@ -1,6 +1,19 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, OnInit, Renderer2, ViewChild } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef,
+  HostListener,
+  OnInit,
+  Renderer2,
+  ViewChild,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -13,117 +26,134 @@ import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FooterSectionComponent } from '../footer-section/footer-section.component';
 
-
 @Component({
   selector: 'app-snap-section',
   standalone: true,
-  imports: [CarouselModule, CommonModule, MatCardModule, MatButtonModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatSidenavModule, FooterSectionComponent],
+  imports: [
+    CarouselModule,
+    CommonModule,
+    MatCardModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatSidenavModule,
+    FooterSectionComponent,
+  ],
   templateUrl: './snap-section.component.html',
-  styleUrl: './snap-section.component.css'
+  styleUrl: './snap-section.component.css',
 })
 export class SnapSectionComponent implements OnInit, AfterViewInit {
   sections = [1, 2, 3, 4, 5]; // You can adjust the sections as needed
   navs = [
     {
-      "id": "#who-we-are-section",
-      "name": "Who We Are?"
+      id: '#who-we-are-section',
+      name: 'Who We Are?',
     },
     {
-      "id": "#what-we-do-section",
-      "name": "What We Do?"
+      id: '#what-we-do-section',
+      name: 'What We Do?',
     },
     {
-      "id": "#our-principles-section",
-      "name": "Our Principles"
+      id: '#our-principles-section',
+      name: 'Our Principles',
     },
     {
-      "id": "#why-choose-us-section",
-      "name": "Why Choose Us?"
+      id: '#why-choose-us-section',
+      name: 'Why Choose Us?',
     },
 
     {
-      "id": "#case-studies-section",
-      "name": "Case Studies"
+      id: '#case-studies-section',
+      name: 'Case Studies',
     },
     {
-      "id": "#get-in-touch-section",
-      "name": "Get In Touch"
-    }
+      id: '#get-in-touch-section',
+      name: 'Get In Touch',
+    },
   ];
   principles = [
     {
       img: 'assets/Bubble.svg',
-      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ',
     },
     {
       img: 'assets/Bubble.svg',
-      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ',
     },
     {
       img: 'assets/Bubble.svg',
-      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ',
     },
     {
       img: 'assets/Bubble.svg',
-      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut '
+      desc: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut ',
     },
-
   ];
 
   caseStudies = [
     {
-      "applicationName": "Name of Application",
-      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "assets/Gate.svg"
+      applicationName: 'Name of Application',
+      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
-      "applicationName": "2",
-      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "assets/Bubble.svg"
+      applicationName: '2',
+      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      aplicationBackgroundImage: 'assets/Bubble.svg',
     },
     {
-      "applicationName": "3",
-      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "assets/Gate.svg"
+      applicationName: '3',
+      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
-      "applicationName": "4",
-      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "assets/Gate.svg"
+      applicationName: '4',
+      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
-      "applicationName": "5",
-      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "assets/Gate.svg"
+      applicationName: '5',
+      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
-      "applicationName": "6",
-      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "assets/Gate.svg"
+      applicationName: '6',
+      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
-      "applicationName": "7",
-      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "assets/Gate.svg"
+      applicationName: '7',
+      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
-      "applicationName": "8",
-      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "assets/Gate.svg"
+      applicationName: '8',
+      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
-      "applicationName": "9",
-      "tags": ['tag1', 'tag2', 'tag3', 'tag4'],
-      "aplicationBackgroundImage": "assets/Gate.svg"
-    }
+      applicationName: '9',
+      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      aplicationBackgroundImage: 'assets/Gate.svg',
+    },
   ];
 
-  hoverImages = ['assets/Bubble.svg', 'assets/flower leave.svg', 'assets/star.svg', 'assets/MOCKUP 5.svg'];
+  hoverImages = [
+    'assets/Bubble.svg',
+    'assets/flower leave.svg',
+    'assets/star.svg',
+    'assets/MOCKUP 5.svg',
+  ];
 
   @ViewChild('footer', { static: false }) footerElement!: ElementRef; // Reference to the footer element
 
   contactForm: FormGroup;
-  constructor(private el: ElementRef, private renderer: Renderer2, private fb: FormBuilder,
+  constructor(
+    private el: ElementRef,
+    private renderer: Renderer2,
+    private fb: FormBuilder
   ) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -132,25 +162,44 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
       companyName: ['', [Validators.required]],
       budget: ['', [Validators.required]],
       budgetType: ['overall', [Validators.required]],
-      projectDesc: ['', [Validators.required]]
+      projectDesc: ['', [Validators.required]],
     });
     gsap.registerPlugin(ScrollTrigger);
   }
 
-  ngOnInit(): void {
+  drawerMode: 'side' | 'over' = 'side'; // Default mode
+  drawerOpened: 'true' | 'false' = 'false';
 
+  ngOnInit(): void {
+    this.setDrawerMode(window.innerWidth);
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.setDrawerMode(event.target.innerWidth);
+  }
+
+  setDrawerMode(width: number) {
+    console.log(width)
+    if (width < 768) {
+      this.drawerMode = 'over'; // Mobile view
+      this.drawerOpened = 'false';
+    } else {
+      this.drawerMode = 'side'; // Desktop view
+      this.drawerOpened = 'true';
+    }
+  }
+
   ngAfterViewInit(): void {
     this.initScrollTrigger();
   }
-
 
   activateSnapScroll(event: Event) {
     const container = this.el.nativeElement.querySelector('.scroll-container');
     const containerPosition = container.getBoundingClientRect();
     const scrollTop = containerPosition.top;
 
-    console.log("SNAP SCROLL" + scrollTop)
+    console.log('SNAP SCROLL' + scrollTop);
     if (scrollTop >= 0) {
       this.renderer.addClass(container, 'snap-active');
     } else {
@@ -195,7 +244,12 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
     };
 
     emailjs
-      .send('service_vrn1bv4', 'template_b7dmdci', templateParams, 'VeruUBjIAMcmxkkXU')
+      .send(
+        'service_vrn1bv4',
+        'template_b7dmdci',
+        templateParams,
+        'VeruUBjIAMcmxkkXU'
+      )
       .then(
         (response) => {
           console.log('SUCCESS!', response.status, response.text);
@@ -208,7 +262,6 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
 
   getErrorMessage() {
     return 'You must enter a value';
-
   }
 
   get form() {
@@ -246,24 +299,23 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
     // });
 
     // ScrollTrigger for snapping the video section into full view
-    console.log('card')
+    console.log('card');
     gsap.timeline({
       scrollTrigger: {
-        trigger: "#case-studies",   // The video section
-        start: "top top",          // When the video reaches the top of the viewport
-        pin: true,                 // Pin the video section (it stays fixed until scrolled past)
-        scrub: true,               // Smooth scrolling behavior
+        trigger: '#case-studies', // The video section
+        start: 'top top', // When the video reaches the top of the viewport
+        pin: true, // Pin the video section (it stays fixed until scrolled past)
+        scrub: true, // Smooth scrolling behavior
         // markers: true,
         snap: {
-          snapTo: 1,               // Snap to the full view of the video section
-          duration: { min: 0.1, max: 1 },  // Duration of the snap
-          ease: "power2.inOut"      // Ease function for smooth snapping
+          snapTo: 1, // Snap to the full view of the video section
+          duration: { min: 0.1, max: 1 }, // Duration of the snap
+          ease: 'power2.inOut', // Ease function for smooth snapping
         },
-        end: "+=80%",             // Snap to the next section after scrolling through the video
-        pinSpacing: false          // Avoid extra space after the pin
-      }
+        end: '+=80%', // Snap to the next section after scrolling through the video
+        pinSpacing: false, // Avoid extra space after the pin
+      },
     });
-
   }
 
   // scrollPosition = 0;
@@ -306,7 +358,7 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
     // if(this.currCaseStudy != clickedIndex){
 
     // }
-    console.log(clickedCard)
+    console.log(clickedCard);
     // console.log(this.currCaseStudy + ' ' + clickedIndex)
     // Animate prev cards
     let prevDec = 30;
@@ -315,12 +367,11 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
       const prevCard = cards[i];
       let prevY;
       if (i >= clickedIndex - 2) {
-        prevY = `-${(((i) * 100) + prevDec)}%`;
+        prevY = `-${i * 100 + prevDec}%`;
         prevDec -= 10;
         prevScale = 0.8;
-      }
-      else {
-        prevY = `-${(((i) * 100) + 10)}%`;
+      } else {
+        prevY = `-${i * 100 + 10}%`;
         prevScale = 0.8;
       }
       // Move each subsequent card to the previous card's position, relative to its current position
@@ -328,18 +379,18 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
         y: prevY,
         scale: prevScale,
         duration: 0.4,
-        ease: "power2.out"
+        ease: 'power2.out',
       });
     }
 
     let currY;
-    currY = `-${100 * clickedIndex + 10}%`
+    currY = `-${100 * clickedIndex + 10}%`;
     // Animate the clicked card
     gsap.to(clickedCard, {
-      y: currY,           // Move the clicked card up by 10%
-      scale: 0.9,         // Scale down to 0.9
-      duration: 0.4,      // Animation duration
-      ease: "power2.out", // Easing effect
+      y: currY, // Move the clicked card up by 10%
+      scale: 0.9, // Scale down to 0.9
+      duration: 0.4, // Animation duration
+      ease: 'power2.out', // Easing effect
     });
 
     // Animate subsequent cards to take the position of the one above
@@ -347,19 +398,19 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
       const nextCard = cards[i];
 
       // Calculate the current Y position of the next card
-      const currentY = parseFloat(getComputedStyle(nextCard).transform.split(',')[5]) || 0;
+      const currentY =
+        parseFloat(getComputedStyle(nextCard).transform.split(',')[5]) || 0;
       let nextY;
-      if (i == (clickedIndex + 1)) {
-        nextY = `${-(i * 100)}%`
-      }
-      else {
-        nextY = `${-((i * 100) - 100)}%`
+      if (i == clickedIndex + 1) {
+        nextY = `${-(i * 100)}%`;
+      } else {
+        nextY = `${-(i * 100 - 100)}%`;
       }
       // Move each subsequent card to the previous card's position, relative to its current position
       gsap.to(nextCard, {
         y: nextY, // Move the next card to the previous card's position based on its current position
-        duration: 0.4,            // Animation duration
-        ease: "power2.out"        // Easing effect
+        duration: 0.4, // Animation duration
+        ease: 'power2.out', // Easing effect
       });
     }
     this.currCaseStudy = clickedIndex;
@@ -373,8 +424,8 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
     // Create an img element
     const img = document.createElement('img');
     img.src = imgSrc; // Replace with your image URL
-    img.style.position = 'fixed';  // Positioning the image absolutely
-    img.style.maxWidth = '20vw';  // Set image size
+    img.style.position = 'fixed'; // Positioning the image absolutely
+    img.style.maxWidth = '20vw'; // Set image size
     img.style.height = '20vh';
     img.style.zIndex = '10000';
     img.style.left = `${mouseX}px`;
@@ -389,8 +440,7 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
 
   // Function to update the image position based on the mouse event
   updateImgPos(event: MouseEvent) {
-
-    console.log("update img pos" + this.hoverImage)
+    console.log('update img pos' + this.hoverImage);
     // Ensure the image element is retrieved only once
     if (!this.hoverImage) {
       this.hoverImage = document.getElementById('hover-image');
@@ -401,22 +451,21 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
       const mouseX = event.clientX;
       const mouseY = event.clientY;
 
-      console.log(mouseX)
+      console.log(mouseX);
       // Use requestAnimationFrame for smoother updates
       requestAnimationFrame(() => {
-        this.hoverImage!.style.left = `${mouseX + 10}px`;  // Offset to avoid overlap with the cursor
-        this.hoverImage!.style.top = `${mouseY + 10}px`;   // Offset to avoid overlap with the cursor
+        this.hoverImage!.style.left = `${mouseX + 10}px`; // Offset to avoid overlap with the cursor
+        this.hoverImage!.style.top = `${mouseY + 10}px`; // Offset to avoid overlap with the cursor
       });
     }
   }
 
-
-    hideImage(event: MouseEvent) {
-      this.hoverImage = null;
-      // Remove the image by its id
-      const img = document.getElementById('hover-image');
-      if (img) {
-        img.remove();
-      }
+  hideImage(event: MouseEvent) {
+    this.hoverImage = null;
+    // Remove the image by its id
+    const img = document.getElementById('hover-image');
+    if (img) {
+      img.remove();
     }
   }
+}

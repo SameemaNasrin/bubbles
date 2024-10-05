@@ -1,7 +1,7 @@
 <div class="snap-scroll-footer-container">
 
     <mat-drawer-container class="nav-scroll-container">
-        <mat-drawer mode="side" opened class="nav-container">
+        <mat-drawer #drawer [mode]="drawerMode" [opened]="drawerOpened" class="nav-container">
             <nav *ngFor="let nav of navs">
                 <a [href]="nav.id" id="nav-id">{{nav.name}}</a>
             </nav>
@@ -53,7 +53,7 @@
                 <div class="snap-section-div" id="case-studies">
                     @for (caseStudy of caseStudies; track caseStudy){
                     <mat-card #caseStudyCard class="case-study-card"
-                        [ngStyle]="{'background-image': 'url(\'assets/MOCKUP 5.svg\')'}" (click)="popCaseStudy($event)">
+                        [ngStyle]="{'background-image': 'url(\'assets/MOCKUP 5.svg\')'}" onscroll="popCaseStudy($event)">
                         <mat-card-content>
                             <p>{{caseStudy.applicationName}}</p>
                             @for(tag of caseStudy.tags; track tag){
