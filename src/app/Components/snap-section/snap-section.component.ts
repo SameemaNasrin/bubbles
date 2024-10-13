@@ -14,6 +14,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -25,6 +26,13 @@ import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import { CarouselModule } from 'ngx-owl-carousel-o';
 import { FooterSectionComponent } from '../footer-section/footer-section.component';
+
+class CurrCaseStudy {
+  caseStudyNo: number;
+  applicationName: string;
+  tags: Array<string>;
+  aplicationBackgroundImage: string;
+}
 
 @Component({
   selector: 'app-snap-section',
@@ -39,13 +47,14 @@ import { FooterSectionComponent } from '../footer-section/footer-section.compone
     MatSelectModule,
     ReactiveFormsModule,
     MatSidenavModule,
-    FooterSectionComponent,
+    FooterSectionComponent
   ],
   templateUrl: './snap-section.component.html',
   styleUrl: './snap-section.component.css',
 })
 export class SnapSectionComponent implements OnInit, AfterViewInit {
   sections = [1, 2, 3, 4, 5]; // You can adjust the sections as needed
+  currCaseStudyIndex = 0;
   navs = [
     {
       id: '#who-we-are-section',
@@ -94,52 +103,62 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
 
   caseStudies = [
     {
+      caseStudyNo: 1,
       applicationName: 'Name of Application',
       tags: ['tag1', 'tag2', 'tag3', 'tag4'],
       aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
+      caseStudyNo: 2,
       applicationName: '2',
-      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      tags: ['tag1', 'tag2', 'tag3'],
       aplicationBackgroundImage: 'assets/Bubble.svg',
     },
     {
+      caseStudyNo: 3,
       applicationName: '3',
-      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      tags: ['tag1', 'tag2', 'tag4'],
       aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
+      caseStudyNo: 4,
       applicationName: '4',
       tags: ['tag1', 'tag2', 'tag3', 'tag4'],
       aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
+      caseStudyNo: 5,
       applicationName: '5',
-      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      tags: ['tag1', 'tag2', 'tag4'],
       aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
+      caseStudyNo: 6,
       applicationName: '6',
       tags: ['tag1', 'tag2', 'tag3', 'tag4'],
       aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
+      caseStudyNo: 7,
       applicationName: '7',
-      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      tags: ['tag1', 'tag2'],
       aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
+      caseStudyNo: 8,
       applicationName: '8',
-      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      tags: ['tag4'],
       aplicationBackgroundImage: 'assets/Gate.svg',
     },
     {
+      caseStudyNo: 9,
       applicationName: '9',
-      tags: ['tag1', 'tag2', 'tag3', 'tag4'],
+      tags: ['tag1', 'tag3', 'tag4'],
       aplicationBackgroundImage: 'assets/Gate.svg',
     },
   ];
 
+  currCaseStudy = new CurrCaseStudy();
   hoverImages = [
     'assets/Bubble.svg',
     'assets/flower leave.svg',
@@ -153,7 +172,8 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   constructor(
     private el: ElementRef,
     private renderer: Renderer2,
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private _snackBar: MatSnackBar
   ) {
     this.contactForm = this.fb.group({
       name: ['', [Validators.required]],
@@ -170,8 +190,14 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   drawerMode: 'side' | 'over' = 'side'; // Default mode
   drawerOpened: 'true' | 'false' = 'false';
 
+  @ViewChild('snapSectionContactForm', { static: true }) contactFormSnapSection: ElementRef;
+
   ngOnInit(): void {
     this.setDrawerMode(window.innerWidth);
+    this.currCaseStudy.caseStudyNo = 1;
+    this.currCaseStudy.applicationName = 'Name of Application';
+    this.currCaseStudy.tags = ['tag1', 'tag2', 'tag3', 'tag4'];
+    this.currCaseStudy.aplicationBackgroundImage = 'assets/Gate.svg';
   }
 
   @HostListener('window:resize', ['$event'])
@@ -180,7 +206,7 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   }
 
   setDrawerMode(width: number) {
-    console.log(width)
+    console.log(width);
     if (width < 768) {
       this.drawerMode = 'over'; // Mobile view
       this.drawerOpened = 'false';
@@ -192,6 +218,14 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.initScrollTrigger();
+  }
+
+  scrollToContactForm() {
+    if (this.contactForm) {
+      this.contactFormSnapSection.nativeElement.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      console.error('Contact form not found');
+    }
   }
 
   activateSnapScroll(event: Event) {
@@ -225,9 +259,22 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
 
       // Call sendEmail and pass form data
       this.sendEmail(body);
+      this.resetForm();
+      this.sendSnackBar();
     } else {
       console.log('Form is invalid');
     }
+  }
+
+  sendSnackBar() {
+    this._snackBar.open('Form submitted Successfully', 'X');
+  }
+
+  resetForm(){
+    this.contactForm.reset();
+    this.contactForm.patchValue({
+      budgetType: 'overall'
+    }) 
   }
 
   public sendEmail(body: any): void {
@@ -349,73 +396,15 @@ export class SnapSectionComponent implements OnInit, AfterViewInit {
   //     this.renderer.setStyle(this.footerElement.nativeElement, 'display', 'none');
   //   }
   // }
-  currCaseStudy = 0;
-  popCaseStudy(ele: any) {
-    // Find the clicked card and its index
-    const clickedCard = ele.target.closest('.case-study-card'); // Get the closest card
-    const cards = document.querySelectorAll('.case-study-card');
-    const clickedIndex = Array.from(cards).indexOf(clickedCard);
-    // if(this.currCaseStudy != clickedIndex){
+  //
 
-    // }
-    console.log(clickedCard);
-    // console.log(this.currCaseStudy + ' ' + clickedIndex)
-    // Animate prev cards
-    let prevDec = 30;
-    var prevScale = 1;
-    for (let i = 0; i <= clickedIndex; i++) {
-      const prevCard = cards[i];
-      let prevY;
-      if (i >= clickedIndex - 2) {
-        prevY = `-${i * 100 + prevDec}%`;
-        prevDec -= 10;
-        prevScale = 0.8;
-      } else {
-        prevY = `-${i * 100 + 10}%`;
-        prevScale = 0.8;
-      }
-      // Move each subsequent card to the previous card's position, relative to its current position
-      gsap.to(prevCard, {
-        y: prevY,
-        scale: prevScale,
-        duration: 0.4,
-        ease: 'power2.out',
-      });
-    }
-
-    let currY;
-    currY = `-${100 * clickedIndex + 10}%`;
-    // Animate the clicked card
-    gsap.to(clickedCard, {
-      y: currY, // Move the clicked card up by 10%
-      scale: 0.9, // Scale down to 0.9
-      duration: 0.4, // Animation duration
-      ease: 'power2.out', // Easing effect
-    });
-
-    // Animate subsequent cards to take the position of the one above
-    for (let i = clickedIndex + 1; i < cards.length; i++) {
-      const nextCard = cards[i];
-
-      // Calculate the current Y position of the next card
-      const currentY =
-        parseFloat(getComputedStyle(nextCard).transform.split(',')[5]) || 0;
-      let nextY;
-      if (i == clickedIndex + 1) {
-        nextY = `${-(i * 100)}%`;
-      } else {
-        nextY = `${-(i * 100 - 100)}%`;
-      }
-      // Move each subsequent card to the previous card's position, relative to its current position
-      gsap.to(nextCard, {
-        y: nextY, // Move the next card to the previous card's position based on its current position
-        duration: 0.4, // Animation duration
-        ease: 'power2.out', // Easing effect
-      });
-    }
-    this.currCaseStudy = clickedIndex;
+  prevCaseStudy() {
+    this.currCaseStudy = this.caseStudies[--this.currCaseStudyIndex]
   }
 
+  nextCaseStudy() {
+    this.currCaseStudy = this.caseStudies[++this.currCaseStudyIndex]
+  }
   showImage(event: any, pos: number) {
     // Extract the mouse coordinates from the event
     const mouseX = event.clientX;

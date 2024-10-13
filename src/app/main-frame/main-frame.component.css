@@ -108,3 +108,9 @@
 app-snap-section, app-footer-section, .base-div, .video-frame{
     overflow-x: hidden;
 }
+
+#header-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 2vh 5vw;
+}

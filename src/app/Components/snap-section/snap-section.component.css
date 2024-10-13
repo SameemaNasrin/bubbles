@@ -294,10 +294,10 @@ form {
   -ms-overflow-style: none; /* IE and Edge */
 }
 
-#case-studies-section {
+/* #case-studies-section {
   overflow: hidden;
-  /* display: flex; */
-}
+  display: flex;
+} */
 
 /* add scroll effect to case studies */
 /* #case-studies{
@@ -327,4 +327,14 @@ mat-error {
   width: 200px; /* Set your desired image size */
   height: auto; /* Maintain aspect ratio */
   z-index: 1000; /* Ensure it's above other elements */
+}
+
+.case-study-button {
+  margin: 10px;
+}
+
+.case-study-btn {
+  margin: 0 10px;
+  background-color: transparent;
+  font-style: "Playfair Display", system-ui;
 }

@@ -51,12 +51,12 @@
             </section>
             <section class="snap-section case-study-cards" id="case-studies-section">
                 <div class="snap-section-div" id="case-studies">
-                    @for (caseStudy of caseStudies; track caseStudy){
+                    <!-- @for (caseStudy of caseStudies; track caseStudy){ -->
                     <mat-card #caseStudyCard class="case-study-card"
-                        [ngStyle]="{'background-image': 'url(\'assets/MOCKUP 5.svg\')'}" onscroll="popCaseStudy($event)">
+                        [ngStyle]="{'background-image': 'url(\'assets/MOCKUP 5.svg\')'}"><!--(click)="popCaseStudy($event, caseStudy.caseStudyNo)"-->
                         <mat-card-content>
-                            <p>{{caseStudy.applicationName}}</p>
-                            @for(tag of caseStudy.tags; track tag){
+                            <p>{{ this.currCaseStudy.applicationName }}</p>
+                            @for(tag of this.currCaseStudy.tags; track tag){
                             <button mat-flat-button class="tag">{{tag}}</button>
                             }
                             <br>
@@ -65,14 +65,21 @@
                             </button>
                         </mat-card-content>
                     </mat-card>
-                    }
+                    <!-- case study buttons -->
+                     <div class="case-study-button">
+                        <button mat-raised-button class="case-study-btn" (click)="prevCaseStudy()"
+                        [disabled]="currCaseStudyIndex==0">Prev</button>
+                        <button mat-raised-button class="case-study-btn" (click)="nextCaseStudy()"
+                        [disabled]="currCaseStudyIndex==(caseStudies.length-1)">Next</button>
+                     </div>
+                    <!-- } -->
                 </div>
             </section>
-            <section class="snap-section" id="get-in-touch-section">
+            <section class="snap-section" id="get-in-touch-section" #snapSectionContactForm>
                 <div class="snap-section-div" id="get-in-touch">
                     <h1>We are here for you! Let’s get Started</h1>
                     <!-- contact form -->
-                    <div class="contact-form">
+                    <div class="contact-form" id="snap-section-contact-form">
                         <form [formGroup]="contactForm">
 
                             <mat-form-field>

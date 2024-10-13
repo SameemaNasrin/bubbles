@@ -1,23 +1,32 @@
 <div class="base-div scale-element">
-  <app-header></app-header>
+  <div id="header-container">
+    <img src="assets/Logo text.svg" alt="Logo" />
+    <a  href="javascript:void(0)" (click)="scrollToContactForm()" id="nav-id">
+      <img
+        src="assets/Contact Us.gif"
+        alt="Contact Us"
+        style="width: 48px; height: 48px"
+      />
+    </a>
+  </div>
+
   <div id="text-div">
     <!-- <img src="../../../assets/Gate.svg" alt="Gate" id="gate"> -->
     <span id="tagline">
-      You pop the ideas <br>
+      You pop the ideas <br />
       We pop the execution
     </span>
     <span id="sub-tag">
-      <br>
+      <br />
       We make your dream product come live with stunning designs
     </span>
   </div>
   <span id="scroll-to-explore">
-    <img src="assets/Arrow horizontal.svg" alt="Arrow" id="arrow">
+    <img src="assets/Arrow horizontal.svg" alt="Arrow" id="arrow" />
     <span id="scroll-to-explore-text">Scroll to explore</span>
   </span>
   <div class="image-container">
-
-    <img src="assets/Bubble.svg" alt="Bubble" id="bubble">
+    <img src="assets/Bubble.svg" alt="Bubble" id="bubble" />
   </div>
   <div id="bottom" (mouseenter)="updateMousePosition($event)">
     <p>Lets pop some bubbles</p>
@@ -25,10 +34,10 @@
 </div>
 <div class="video-frame">
   <video id="vide-player" width="320" height="240" controls>
-    <source src="movie.mp4" type="video/mp4">
-    <source src="movie.ogg" type="video/ogg">
-  Your browser does not support the video tag.
+    <source src="movie.mp4" type="video/mp4" />
+    <source src="movie.ogg" type="video/ogg" />
+    Your browser does not support the video tag.
   </video>
 </div>
-<app-snap-section></app-snap-section>
+<app-snap-section #snapSection></app-snap-section>
 <!-- <app-footer-section></app-footer-section> -->
